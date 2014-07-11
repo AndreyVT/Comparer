@@ -1,0 +1,14 @@
+<table width="100%">
+<tr height="20%" width="100%">
+<td align="center">[{{item.id}}]</td>
+<td align="center"> {{item.name}}</td>
+<td align="center">{{item.price}}</td>
+<td align="center">{{item.shopName}}</td>
+<td align="center">{{item.date | date: "dd.MM.yyyy"}}</td>
+</tr>
+</table>
+
+<!--
+{{item.name}} :: <input type="number" ng-model="item.price" min="0">{{item.price | currency}}</input>
+					<span class="error" ng-show="input.$error.number">Not valid number!</span>
+-->
