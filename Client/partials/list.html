@@ -1,0 +1,21 @@
+<input ng-model="searchText" placeholder="Введите название для поиска">
+<button ng-click="search()" class="btn-info">Искать</button>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>Название</td>
+        <td>Магазин</td>
+        <td>Цена</td>
+        <td><a href="#/new/"><i class="icon-plus"></i></a></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in searchResults">
+        <td>{{item.name}}</td>
+        <td>{{item.object}}</td>
+        <td>{{item.price}}</td>
+        <td><a href="#/edit/{{$index}}"><i class="icon-edit"></i></a></td>
+    </tr>
+    </tbody>
+</table>
