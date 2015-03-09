@@ -1,0 +1,23 @@
+<input ng-model="searchText" placeholder="Введите название для поиска">
+<button ng-click="search()" class="btn-info">Искать</button>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Название магазина</td>
+        <td>Адрес</td>
+        <td>Тэг</td>
+        <td><a href="#/newShop/"><i class="icon-plus"></i></a></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="shop in shopsList">
+        <td>{{shop.id}}</td>
+        <td>{{shop.name}}</td>
+        <td>{{shop.address}}</td>
+        <td>{{shop.tag}}</td>
+        <td><a href="#/editShop/{{shop.id}}"><i class="icon-edit"></i></a></td>
+    </tr>
+    </tbody>
+</table>

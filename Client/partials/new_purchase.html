@@ -1,0 +1,21 @@
+<form>
+    <input ng-model="purchase.name" placeholder="Название покупки">
+    <select ng-model="purchase.ShopId" ng-options="shop.id as shop.name for shop in listShops"></select>
+    <input type="date" ng-model="purchase.dateRecord" placeholder="Дата">
+    <input ng-model="purchase.tag" placeholder="Tag">
+    <br>
+    <lable>{{selectedShop}}</lable>
+    <br>
+    <lable>Покупка: {{purchase}}</lable>
+
+   <!-- <tr ng-repeat="record in records">
+        <td>{{item.name}}</td>
+        <td>{{item.object}}</td>
+        <td>{{item.price}}</td>
+        <td><a href="#/edit/{{$index}}"><i class="icon-edit"></i></a></td>
+    </tr>-->
+
+
+
+    <button ng-click="save()" class="btn-primary">Save</button>
+</form>

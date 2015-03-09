@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Название покупки</td>
+        <td>Магазин</td>
+        <td>Дата покупки</td>
+        <td>Таг</td>
+        <td><a href="#/newPurchase/"><i class="icon-plus"></i></a></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="purchase in purchasesList">
+        <td>{{purchase.id}}</td>
+        <td>{{purchase.name}}</td>
+        <td>{{purchase.ShopId}}</td>
+        <td>{{purchase.dateRecord}}</td>
+        <td>{{purchase.tag}}</td>
+        <td><a href="#/editPurchase/{{purchase.id}}"><i class="icon-edit"></i></a></td>
+    </tr>
+    </tbody>
+
+</table>

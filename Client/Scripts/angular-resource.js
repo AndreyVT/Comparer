@@ -542,6 +542,8 @@ angular.module('ngResource', ['ng']).
             if (data) {
               // Need to convert action.isArray to boolean in case it is undefined
               // jshint -W018
+              console.log("Angular-resource data ==========");
+              console.log(data);
               if (angular.isArray(data) !== (!!action.isArray)) {
                 throw $resourceMinErr('badcfg',
                     'Error in resource configuration. Expected ' +
