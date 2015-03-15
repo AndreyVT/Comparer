@@ -1,0 +1,13 @@
+<br>
+List records for purchase: {{purchase.name}} || <a href="#/newRecord/{{purchase.id}}"><i class="glyphicon glyphicon-plus"></i></a>
+<br>
+
+<div ng-repeat = "record in RecordsList">
+    <div class="row">
+        <div class="col-md-3">{{record.id}}</div>
+        <div class="col-md-3">{{record.PurchaseId}}</div>
+        <div class="col-md-3">{{record.createdAt}}</div>
+        <div class="col-md-3"><a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a></div>
+    </div>
+</div>
+

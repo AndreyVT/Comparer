@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
     ////////////  RECORDS   ///////////////////////////////////////////////////////////////////////////////////
     // GET RECORDS
     // Get list records by purchaseId by subsrt
-    app.get('/api/v1/records/:purchaseId', record.get);
+    app.get('/api/v1/records/:PurchaseId', record.get);
     // GET record
     // Get one record by id
     app.get('/api/v1/record/:id', record.getById);
