@@ -14,14 +14,23 @@ var item = function() {
     var get = function(req, res, next) {
         var response = res;
         var substr = '%' + req.params.substr + '%';
-        console.log('========== Item.Get!!!! :: ' + substr);
-        //console.log(Model.Item);
-        //console.log('=====================');
-        Model.Item.sync({force: true}).then(function(){
+        console.log('========== Items.Get!!!! :: ' + substr);
+       /* Model.seq.query('select id, name from cmpr_items where upper(name) like upper(\''+substr+'\')',
+            { type: 'SELECT'});*/
+
+        Model.seq.query("SELECT * FROM cmpr_items where upper(name) like upper('" + substr + "')").success(function(myTableRows) {
+
+            response.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'
+            });
+            response.end(JSON.stringify(myTableRows));
+        })
+
+
+        /*Model.Item.sync({force: true}).then(function(){
             Model.Item.findAll({
             where: {
-                    name: {
-                        $like: substr
+                       name:  {
+                           ilike: substr
                     }
                 }
             }).success(function (result) { //
@@ -29,7 +38,7 @@ var item = function() {
                 });
                 response.end(JSON.stringify(result));
             })
-        })
+        })*/
     };
 
     // GET item by id
@@ -47,10 +56,12 @@ var item = function() {
     // Create item
     var createItem = function(req, res, next) {
         var newItem = req.params;
+        console.log('========== Item.createItem')
+        console.log(newItem)
         Model.Item.create(newItem).complete(function(err, func1) { //sync({force: true}).
             res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
             res.end(JSON.stringify(func1));
-            res.send();
+            //res.send();
         });
     };
 

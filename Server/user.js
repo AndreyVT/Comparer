@@ -28,7 +28,7 @@ var user = function() {
     };
 
     // GET Purchase
-    // Get one Purchase by id
+    // Get one user by id
     var getById = function(req, res, next) {
         var response = res;
         Model.User.find({where : {id: req.params.id}}).success(function (result) {
@@ -47,6 +47,24 @@ var user = function() {
         });
     };
 
+    // login user
+    var loginUser = function(req, res, next) {
+        console.log("====== Login user :: ", req.params);
+        var credentials = req.params;
+        Model.User.find({where : {name: credentials.username, password: credentials.password}}).success(function (result) {
+            console.log("====== Result of search user :: ", result);
+            if (result === null) {
+                res.writeHead(204, {'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({text: "No user."}));
+            }
+            else{
+                res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8' });
+                result.sessionId = 'kjkl21j312j3k12'; // TODO нужно как то генерить уникальный ИД!!!
+                res.end(JSON.stringify(result));
+            }
+        })
+    };
+
     // UPDATE Purchase IN DB
     var update = function(req, res, next) {
         var tmpUser = req.params;
@@ -58,11 +76,13 @@ var user = function() {
         });
     };
 
+
     return {
         get : get,
         getById : getById,
         createUser : createUser,
-        update : update
+        update : update,
+        login: loginUser
     }
 };
 module.exports = new user();

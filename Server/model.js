@@ -15,8 +15,8 @@ sequelize = new Sequelize('cmpr', 'cmpr', 'cmpr123', {
 Shops = sequelize.define('Shop', {name: Sequelize.STRING, address: Sequelize.STRING, tag: Sequelize.STRING}, {
         tableName: 'cmpr_shops'});
 
-Users = sequelize.define('User', {name: Sequelize.STRING, email: Sequelize.STRING, tag: Sequelize.STRING}, {
-    tableName: 'cmpr_users'});
+Users = sequelize.define('User', {name: Sequelize.STRING, email: Sequelize.STRING, tag: Sequelize.STRING, role:
+    Sequelize.STRING}, {tableName: 'cmpr_users'});
 
 Items = sequelize.define('Item', {name: Sequelize.STRING, artikul: Sequelize.STRING, tag: Sequelize.STRING}, {
     tableName: 'cmpr_items'});
@@ -29,6 +29,7 @@ Record = sequelize.define('Record', {price: Sequelize.FLOAT, tag: Sequelize.STRI
 
 Users.hasOne(Shops);
 Users.hasOne(Purchase);
+Users.hasOne(Items);
 
 Shops.hasOne(Purchase);
 

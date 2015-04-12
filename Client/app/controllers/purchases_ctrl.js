@@ -18,7 +18,7 @@ function PurchasesCtrl($scope) {
     console.log('===============');
     console.log('function PurchasesCtrl');
     console.log('===============');
-    $scope.purchasesList = $scope.purchases.ListPurchases({id: $scope.userId});
+    $scope.purchasesList = $scope.purchases.ListPurchases({id: $scope.currentUser.id});
     //$scope.records = $scope.records.GetRecords(1);
 };
 
@@ -29,7 +29,7 @@ function newPurchaseCtrl($scope, $location){
     console.log('===============');
     console.log('function newPurchaseCtrl');
 
-    $scope.purchase = $scope.purchases.CreatePurchase({content: "", shop: 0, done: false, UserId: $scope.userId },
+    $scope.purchase = $scope.purchases.CreatePurchase({content: "", shop: 0, done: false, UserId: $scope.currentUser.id },
         function(params){
             console.log(params)
             $scope.purchase.name = 'Покупка' + $scope.purchase.id;

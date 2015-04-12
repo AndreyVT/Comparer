@@ -1,13 +1,34 @@
 <br>
-List records for purchase: {{purchase.name}} || <a href="#/newRecord/{{purchase.id}}"><i class="glyphicon glyphicon-plus"></i></a>
+List records for purchase: {{purchase.name}} <!--|| <a href="#/newRecord/{{purchase.id}}"></a>-->
 <br>
+Purchase ID: {{purchase.id}}
+<br>
+{{tmpText}}
+<!--ng-contoller="NewRecordCtrl"-->
+<div class="panel panel-default" >
+    <div class="panel-body">
+        Название: <input ng-model="itemName" ng-change="itemNameChange()"/>
+        <input ng-model="itemArtikul" ng-show="isAddItem()"/>
+        <button ng-show="isAddItem()" ng-click="addNewItem()">Добавить новый товар</button>
+        <li ng-show="searchResultVisible" ng-repeat="item in itemsList">
+            {{item.name}}<input ng-model="price"/> <button ng-click="addItemToRecord(item, purchase, price)">Добавить</button>
+        </li>
+    </div>
 
-<div ng-repeat = "record in RecordsList">
-    <div class="row">
-        <div class="col-md-3">{{record.id}}</div>
-        <div class="col-md-3">{{record.PurchaseId}}</div>
-        <div class="col-md-3">{{record.createdAt}}</div>
-        <div class="col-md-3"><a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a></div>
+    <button class="btn btn-default" type="submit" ng-click="addRecord(purchase.id)"><i class="glyphicon glyphicon-plus"></i></button>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div ng-repeat = "record in RecordsList">
+            <div class="row">
+                <div class="col-md-1">{{record.id}}</div>
+                <div class="col-md-1">{{record.ItemId}}</div>
+                <div class="col-md-7"><cmpr-item itemm="record"></cmpr-item></div>
+                <div class="col-md-2">{{record.price}}</div>
+                <div class="col-md-1"><a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a></div>
+            </div>
+        </div>
     </div>
 </div>
+
 

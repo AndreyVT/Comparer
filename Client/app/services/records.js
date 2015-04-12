@@ -5,16 +5,16 @@
  * Time: 15:36
  * To change this template use File | Settings | File Templates.
  */
-function RecordService($resource) { //http://localhost:7777/api/v1/items/1
-    var url = 'http://localhost:7777/api/v1';
+function RecordService($resource, url) { //http://localhost:7777/api/v1/items/1
+    //var url = 'http://localhost:7777/api/v1';
     var severalRecordsPath = '/records/:id:cmd';
     var oneRecordPath = '/record/:id:cmd';
     var src = $resource(url,
         {id: "@id", cmd: "@cmd"}, //parameters default
         {
-            ListRecords: { url: url + severalRecordsPath, method: "GET", isArray: true, params: { id : 1} },
+            ListRecords: { url: url + severalRecordsPath, method: "GET", isArray: true, params: {} },
             GetRecord: { url: url + oneRecordPath, method: "GET", params: { id: 0 } }, // id - покупки
-            CreateRecord: { url: url + oneRecordPath,  method: "POST", params: { content: "", PurchaseId: 0} },
+            CreateRecord: { url: url + oneRecordPath,  method: "POST", params: {PurchaseId: 0} },
             UpdateRecord: { url: url + oneRecordPath, method: "PUT", params: {} },
             DeleteRecord: { url: url + oneRecordPath, method: "DELETE", params: { id: 0 } }
         });

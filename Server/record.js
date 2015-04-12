@@ -13,19 +13,25 @@ var record = function() {
     // GET
     // Get list of records by purchase ID
     var get = function(req, res, next) {
-/*
+
         console.log('!!!! ========= var getRecordList')
         console.log('var getRecordList:: ', req.params)
         console.log('================================')
-*/
+
         var response = res;
 
-        Model.Record.findAll({ //sync({force: true}).
+        /*Model.Record.findAll({ //sync({force: true}).
             where: {PurchaseId: req.params.PurchaseId}}).success(function (result) {
                 response.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'
                 });
                 response.end(JSON.stringify(result));
-            })
+            })*/
+
+        Model.seq.query("SELECT t.*, i.* FROM cmpr_record t, cmpr_items i where t.PurchaseId = " + req.params.PurchaseId +
+                " and t.ItemId = i.id ").success(function(myTableRows) {
+            response.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+            response.end(JSON.stringify(myTableRows));
+        })
     };
 
     // GET record by id

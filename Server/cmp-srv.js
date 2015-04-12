@@ -8,15 +8,44 @@ var users = require('./user.js');
 
 var app = restify.createServer()
 
+/*app.on('MethodNotAllowed', function (request, response, cb) {
+    console.log("== MethodNotAllowed request :: ", request.log);
 
-app.use(restify.CORS({origins: ['http://localhost'],
-    credentials: true }));
+});*/
+
+/*app.use(restify.CORS({origins: ['http://localhost'],
+    credentials: true }));*/
+
+app.use(restify.CORS({}));
 
 app.use(restify.fullResponse());
 app.use(restify.bodyParser());
- 
-app.use(function(req, res, next) {
-  //console.log('==== app use  ' + req.body);
+
+// fulfils pre-flight/promise request
+/*app.pre(function(req, res) {
+    console.log('==== app use  1 ');
+    res.send(200);
+});*/
+
+// apply this rule to all requests accessing any URL/URI
+app.pre(function(req, res, next) {
+    console.log('==== app use  2 ', req.method);
+    if (req.method === 'OPTIONS'){
+        req.method = 'POST';
+    }
+
+    // add details of what is allowed in HTTP request headers to the response headers
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Credentials', false);
+    res.header('Access-Control-Max-Age', '86400');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    // the next() function continues execution and will move onto the requested URL/URI
+    next();
+});
+
+/*app.use(function(req, res, next) {
+  console.log('==== app use  ' + req.body);
 
     if (req.params.itemId) {
       Model.Item.findById(req.params.itemId, function(err, item) {
@@ -27,7 +56,7 @@ app.use(function(req, res, next) {
   else {
     next();
   }
-});
+});*/
  
     ////////////  SHOP   ///////////////////////////////////////////////////////////////////////////////////
     // GET ALL SHOPS
@@ -102,37 +131,12 @@ app.use(function(req, res, next) {
     // UPDATE record IN DB
     // Обновить существующую запись
     app.put('/api/v1/user/:id', users.update);
+    // login user
+    app.post('/api/v1/user/login', users.login);
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.listen(7777, function() {
     console.log('%s listening at1 %s', app.name, app.url);
 });
 
-/*app.get('/api/v1/items/:itemId', function(req, res, next) {
-    //Model.seq.authenticate();
-    console.log('get ' + req);
-    res.send(200, req.item);
-});
 
-app.put('/api/v1/items/:itemId', function(req, res, next) {
-    req.item.set(req.body);
-    console.log('put save' + req);
-    req.item.save(function(err, item) {
-        res.send(204, item);
-    });
-});
-
-app.post('/api/v1/items/:itemId', function(req, res, next) {
-    var item = new Item(req.body);
-    console.log('save' + req);
-    item.save(function(err, item) {
-        res.send(201, item);
-    });
-});
-
-app.del('/api/v1/items/:itemId', function(req, res, next) {
-    req.item.remove(function(err) {
-        console.log('del' + req);
-        res.send(204, {text:"trololo"});
-    });
-});*/

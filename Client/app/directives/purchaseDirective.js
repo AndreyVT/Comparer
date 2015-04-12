@@ -13,5 +13,6 @@ mainModule.directive('cmprPurchase', function() {
             purchaseInfo: '=purchase'
         },
         templateUrl: 'app/directives/purchaseTemplate.html'
+
     };
 })

@@ -1,0 +1,9 @@
+<div ng-if="currentUser">Привет, <a href="#/user">{{currentUser.name }}!</a></div>
+<!--<div ng-if="isAuthorized(userRoles.admin)">You're admin.</div>-->
+<div ng-switch on="currentUser.role">
+    <div ng-switch-when="admin">You're admin.</div>
+    <div ng-switch-when="editor">You're editor.</div>
+</div>
+    <div ng-if="!isAuthorized()" ng-show="!currentUser"><a href="#/login">Вход</a></div>
+    <div ng-if="currentUser"><a href="#/logout">Выход</a></div>
+

@@ -1,13 +1,16 @@
-function ItemService($resource) { //http://localhost:7777/api/v1/items/1
-    var src = $resource('http://localhost:7777/api/v1/item/:id:cmd',
+function ItemService($resource, url) { //http://localhost:7777/api/v1/items/1
+    //var url = 'http://localhost:7777/api/v1';
+    var severalItemsPath = '/items/:id:cmd';
+    var oneItemPath = '/item/:id:cmd';
+    var src = $resource(url,
         {id: "@id", cmd: "@cmd"}, //parameters default
         {
-            ListItems: { method: "GET", isArray: true, params: { string: ""} },
-            GetItems: { method: "GET", params: { id: 0 } },
-            CreateItem: { method: "POST", params: { content: "", shop: 0, done: false } },
-            UpdateItem: { method: "PUT", params: {content: "" } },
-            DeleteItem: { method: "DELETE", params: { id: 0 } },
-            ResetItem: { method: "GET", params: { cmd: "reset" } }
+            ListItems: { url: url + severalItemsPath, method: "GET", isArray: true, params: { id: ""} },
+            GetItems: { url: url + oneItemPath, method: "GET", params: { id: 0 } },
+            CreateItem: { url: url + oneItemPath, method: "POST", params: { content: "", shop: 0, done: false } },
+            UpdateItem: { url: url + oneItemPath, method: "PUT", params: {content: "" } },
+            DeleteItem: { url: url + oneItemPath, method: "DELETE", params: { id: 0 } },
+            ResetItem: { url: url + oneItemPath, method: "GET", params: { cmd: "reset" } }
         });
 
     //Usage:

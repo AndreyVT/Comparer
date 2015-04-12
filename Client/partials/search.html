@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+
+    <tr>
+        <td></td>
+        <td style="width: 500px;">
+            <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchText" ng-change="searchTextChanged()">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+
+</table>
+<table class="table table-bordered">
+    <tr>
+        <div ng-show="searchResultVisible">
+            <div ng-repeat = "item in itemsList">
+                <cmpr-searchitem item="item" root="Services"></cmpr-searchitem>
+            </div>
+        </div>
+    </tr>
+</table>
