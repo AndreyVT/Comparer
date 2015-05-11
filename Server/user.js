@@ -49,7 +49,7 @@ var user = function() {
 
     // login user
     var loginUser = function(req, res, next) {
-        console.log("====== Login user :: ", req.params);
+        //console.log("====== Login user :: ", req.params);
         var credentials = req.params;
         Model.User.find({where : {name: credentials.username, password: credentials.password}}).success(function (result) {
             console.log("====== Result of search user :: ", result);
@@ -59,8 +59,15 @@ var user = function() {
             }
             else{
                 res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8' });
-                result.sessionId = 'kjkl21j312j3k12'; // TODO нужно как то генерить уникальный ИД!!!
-                res.end(JSON.stringify(result));
+                //result.sessionId = Math.uuid(); // TODO нужно как то генерить уникальный ИД!!!
+               // result.dataValues.sessionId = Math.getuid();
+               /* var date =  new Date();
+                date.setDate(date.getDate() + 7);
+                res.setCookie('cmpr_cookie', 'cmpr_cookie_1111', {
+                    expires: date
+                });*/
+                res.end(JSON.stringify(result.dataValues));
+                res.send();
             }
         })
     };
