@@ -9,8 +9,8 @@
 /*
 * Список покупок
 * */
-
-function PurchasesCtrl($scope) {
+mainModule.controller('PurchasesCtrl',
+function ($scope) {
     $scope.purchase = {name:'', shop:'', date:'', tag:''};
     $scope.searchText = "";
     $scope.searchResults = [];
@@ -18,9 +18,10 @@ function PurchasesCtrl($scope) {
     console.log('===============');
     console.log('function PurchasesCtrl');
     console.log('===============');
-    $scope.purchasesList = $scope.purchases.ListPurchases({id: $scope.currentUser.id});
+    if ($scope.currentUser)
+        $scope.purchasesList = $scope.purchases.ListPurchases({id: $scope.currentUser.id});
     //$scope.records = $scope.records.GetRecords(1);
-};
+});
 
 function newPurchaseCtrl($scope, $location){
     $scope.selectedShop = {};

@@ -14,7 +14,7 @@ mainModule.controller('LoginController', function ($scope, $rootScope, $location
     $scope.login = function (credentials) {
         AuthService.login(credentials).then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            $scope.setCurrentUser(user);
+            $rootScope.setCurrentUser(user);
             $location.path("/");
         }, function () {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);

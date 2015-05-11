@@ -6,28 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 mainModule.factory('AuthService', function ($http, Session) {
-
-    $http.defaults.useXDomain = true;
-    $http.defaults.headers['Access-Control-Allow-Origin'] = '*';
-    console.log('== Credentials =======: ', $http.defaults );
-    delete $http.defaults.headers.common['X-Requested-With'];
-
     var authService = {};
 
     authService.login = function (credentials) {
-       // console.log('== Credentials =======: ', $http );
-
+        console.log('== Credentials =======: ', credentials);
         return $http
             .post('http://localhost:7777/api/v1/user/login', credentials)
             .then(function (res) {
-                console.log('== User from server =======: ', res );
-                if (res.status === 204 )    {
-                    console.log("User not found!");
-                    return null;
-                }
-                Session.create(res.data.sessionId, res.data.id,
-                    res.data.role);
-                return res.data;
+                //console.log('--------- Auth result ::', res);
+               localStorage['cmpruser'] = JSON.stringify(res.data);
+                var data = res.data; //{sessionId:'121212', id:'1', role:'admin', name:'admin'};
+                Session.create(data.sessionId, data.id,
+                    data.role);
+                return data;
             });
     };
 

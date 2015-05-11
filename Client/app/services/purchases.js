@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function PurchasesService($resource) { //http://localhost:7777/api/v1/items/1
+function PurchasesService($resource, $cookies) {
     var url = 'http://localhost:7777/api/v1';
     var severalParchasesPath = '/purchases/:id:cmd';
     var onePurchasePath = '/purchase/:id:cmd';
@@ -16,7 +16,7 @@ function PurchasesService($resource) { //http://localhost:7777/api/v1/items/1
             ListPurchases: { url: url + severalParchasesPath, method: "GET", isArray: true, params: { id : 1} },
             GetPurchase: { url: url  + onePurchasePath,  method: "GET", params: { id: 0 } },
             CreatePurchase: { url: url + onePurchasePath,  method: "POST", params: { content: "", shop: 0, done: false, userId: 0} },
-            UpdatePurchase: { url: url + onePurchasePath, method: "PUT", params: {} },
+            UpdatePurchase: { url: url + onePurchasePath, method: "POST", params: {} },
             DeletePurchase: { url: url + onePurchasePath, method: "DELETE", params: { id: 0 } }
             //ResetPurchase: { url: url + onePurchasePath, method: "GET", params: { cmd: "reset" } }
         });

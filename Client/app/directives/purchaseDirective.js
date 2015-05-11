@@ -10,9 +10,17 @@ mainModule.directive('cmprPurchase', function() {
     return {
         restrict: 'E',
         scope: {
-            purchaseInfo: '=purchase'
+            purchaseInfo: '=purchase',
+            rootService: '=root'
+        },
+        link: function($scope){
+            var tmpDate = moment($scope.purchaseInfo.dateRecord);
+            tmpDate.locale('ru');
+            $scope.purchaseInfo.dateRecord = tmpDate.format('D MMMM YYYY');
+            $scope.Shop = $scope.rootService.Shop.GetShop({id: $scope.purchaseInfo.ShopId});
+            console.log("====> ", $scope.purchaseInfo);
+
         },
         templateUrl: 'app/directives/purchaseTemplate.html'
-
     };
 })

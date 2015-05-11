@@ -1,26 +1,54 @@
-<br>
-List records for purchase: {{purchase.name}} <!--|| <a href="#/newRecord/{{purchase.id}}"></a>-->
+<!--<br>
+List records for purchase: {{purchase.name}} || <a href="#/newRecord/{{purchase.id}}"></a>
 <br>
 Purchase ID: {{purchase.id}}
 <br>
-{{tmpText}}
+{{tmpText}}-->
 <!--ng-contoller="NewRecordCtrl"-->
 <div class="panel panel-default" >
     <div class="panel-body">
-        Название: <input ng-model="itemName" ng-change="itemNameChange()"/>
-        <input ng-model="itemArtikul" ng-show="isAddItem()"/>
-        <button ng-show="isAddItem()" ng-click="addNewItem()">Добавить новый товар</button>
-        <li ng-show="searchResultVisible" ng-repeat="item in itemsList">
-            {{item.name}}<input ng-model="price"/> <button ng-click="addItemToRecord(item, purchase, price)">Добавить</button>
-        </li>
-    </div>
+        <table class="table">
+            <tr>
+                <td>
+                    <input ng-model="itemArtikul" ng-show="isAddItem()" class="form-control" placeholder="Введите артикул"/>
+                </td>
+                <td style="width: 500px;">
+                    <input ng-model="itemName" ng-change="itemNameChange()" class="form-control" placeholder="Введите название товара"/>
+                </td>
+                <td>
+                    <button ng-show="isAddItem()" ng-click="addNewItem()" class="btn-sm btn-default">Добавить новый товар</button>
+                </td>
+            </tr>
 
-    <button class="btn btn-default" type="submit" ng-click="addRecord(purchase.id)"><i class="glyphicon glyphicon-plus"></i></button>
+            <tr ng-show="searchResultVisible" ng-repeat="item in itemsList">
+                <td>
+                    <strong>{{item.name}}</strong>
+                </td>
+                <td>
+                 <input class="form-control" placeholder="цена" ng-model="price"/>
+                </td>
+                <td>
+                    <button ng-click="addItemToRecord(item, purchase, price)" class="btn-sm btn-default">Добавить товар</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button class="btn btn-default" ng-click="addRecord(purchase.id)" class="btn-sm btn-default">
+                        Добавить запись в покупку
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 </div>
+
 <div class="panel panel-default">
     <div class="panel-body">
         <div ng-repeat = "record in RecordsList">
-            <div class="row">
+            <div class="row pull-left">
                 <div class="col-md-1">{{record.id}}</div>
                 <div class="col-md-1">{{record.ItemId}}</div>
                 <div class="col-md-7"><cmpr-item itemm="record"></cmpr-item></div>

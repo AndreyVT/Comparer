@@ -18,7 +18,7 @@ mainModule.directive('cmprLogin', function() {
             console.log('========= Scope user: ', $scope);
         },*/
         controller: function($scope) {
-            console.log('cmprLogin controller: ', $scope);
+            //console.log('cmprLogin controller: ', $scope);
         },
         templateUrl: 'app/Login/loginTemplate.html'
     };

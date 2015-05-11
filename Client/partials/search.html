@@ -6,7 +6,9 @@
             <div class="input-group">
             <input type="text" class="form-control" ng-model="searchText" ng-change="searchTextChanged()">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
                             </span>
             </div>
         </td>
@@ -15,6 +17,12 @@
 
 </table>
 <table class="table table-bordered">
+    <tr>
+        <button ng-if="currentUser" ng-show="!searchResultVisible" type="button"
+                class="btn btn-primary btn-lg" ng-click="addPurchase()">
+            <span class="glyphicon glyphicon-plus"></span>  ЧЕК
+        </button>
+    </tr>
     <tr>
         <div ng-show="searchResultVisible">
             <div ng-repeat = "item in itemsList">

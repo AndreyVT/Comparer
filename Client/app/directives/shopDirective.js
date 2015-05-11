@@ -9,10 +9,14 @@
 mainModule.directive('cmprShop', function() {
     return {
         restrict: 'E',
+        templateUrl: 'app/directives/shopTemplate.html'/*,
         scope: {
             shopInfo: '=shop'
         },
-        templateUrl: 'app/directives/shopTemplate.html'
+        link: function($scope){
+            console.log('== ShopInfo ==> ', $scope);
+        }*/
+
     };
 })
 

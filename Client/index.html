@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ценовой</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body ng-app="enterprise" ng-controller="AppCtrl">
+    <div class="row">
+        <div class="col-md-1">-</div>
+        <div class="col-md-6">-</div>
+        <div class="col-md-2"><span class="text-right"><a href="#/purchases" ng-if="currentUser">Покупки</a></span></div>
+        <div class="col-md-2"><span class="text-right"><cmpr-login></cmpr-login></span></div>
+        <div class="col-md-1">-</div>
+    </div>
+    <div>
+    <table class="table table-bordered">
+        <tr>
+            <td style="width: 100px;"></td>
+            <td style="width: 1000px;" class="text-center">
+                <a href="/cmpr/"><h2>Ценовой</h2><small>сговор</small></a></br>
+            </td>
+            <td style="width: 100px;" class="text-center"></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td class="text-center"><div class="container-fluid">
+                <ng-view></ng-view>
+            </div></td>
+            <td>3</td>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+    </div>
+
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-cookies.js"></script>
+    <script src="app/app.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+
+    <!-- Auth  -->
+    <script src="app\constants.js"></script>
+    <script src="app\services\sessionService.js"></script>
+    <script src="app\services\authService.js"></script>
+    <script src="app\login\login_ctrl.js"></script>
+    <!-- Auth end -->
+
+    <script src="app\services\shops.js"></script>
+    <script src="app\services\itemsService.js"></script>
+    <script src="app\services\purchases.js"></script>
+    <script src="app\services\records.js"></script>
+
+    <!-- Controllers -->
+    <script src="app\controllers\shops_ctrl.js"></script>
+    <script src="app\controllers\purchases_ctrl.js"></script>
+    <script src="app\controllers\records_ctrl.js"></script>
+    <script src="app\controllers\user_ctrl.js"></script>
+    <script src="app\controllers\search_ctrl.js"></script>
+
+
+    <!-- Directives -->
+    <script src="app\directives\purchaseDirective.js"></script>
+    <script src="app\directives\shopDirective.js"></script>
+    <script src="app\directives\searchItemDirective.js"></script>
+    <script src="app\Item\itemDirective.js"></script>
+    <script src="app\Login\loginDirective.js"></script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+<!--<script type="text/javascript">
+    var datetime = moment();
+    datetime.locale('ru');
+    console.log('~~~~ DATETIME ~~~~:: ', datetime);
+</script>-->
+
+</html>

@@ -1,10 +1,20 @@
-<a href="#/newPurchase/"><i class="glyphicon glyphicon-plus"></i></a>
+
+<div class="row">
+    <div class="col-md-11"></div>
+    <div class="col-md-1"><a href="#/newPurchase/"><i class="glyphicon glyphicon-plus"></i></a></div>
+</div>
 <div ng-repeat="p in purchasesList">
-    <cmpr-purchase purchase="p"></cmpr-purchase>
+    <div class="row">
+        <cmpr-purchase purchase="p" root="Services"></cmpr-purchase>
+    </div>
 </div>
 
-<!--
 
+<!--<div class="col-md-1"><h4>Дата</h4></div>
+    <div class="col-md-4"><h4>Наименование</h4></div>
+    <div class="col-md-5"><h4>Магазин</h4></div>-->
+<!--
+<a href="#/records/{{purchaseInfo.id}}"><i class="glyphicon glyphicon-list"></i></a>
 <table class="table table-bordered">
     <thead>
     <tr>
