@@ -26,8 +26,8 @@ var mainModule = angular.module('enterprise', ['ngRoute', 'ngResource', 'ngCooki
             otherwise({redirectTo:"/search"});
     });
                                  //[$resource, $rootScope, USER_ROLES, AuthService, $cookie, ]
-mainModule.controller('AppCtrl', ['$scope', '$resource', '$rootScope', '$cookies', 'AuthService', 'USER_ROLES', 'Session',
-    function($scope, $resource, $rootScope, $cookies, AuthService, USER_ROLES, Session)    {
+mainModule.controller('AppCtrl', ['$scope', '$resource', '$rootScope', '$cookies', 'AuthService', 'USER_ROLES', 'Session', '$http',
+    function($scope, $resource, $rootScope, $cookies, AuthService, USER_ROLES, Session, $http)    {
 
         $scope.serviceUrl = 'http://localhost:7777/api/v1';
 
@@ -36,7 +36,7 @@ mainModule.controller('AppCtrl', ['$scope', '$resource', '$rootScope', '$cookies
 
         $scope.shops = new ShopService($resource);
         $scope.purchases = new PurchasesService($resource);
-        $scope.records = new RecordService($resource, $scope.serviceUrl);
+        $scope.records = new RecordService($resource, $scope.serviceUrl, $http);
         $scope.items = new ItemService($resource, $scope.serviceUrl);
 
         $scope.Services = {Shop: $scope.shops, Purchases: $scope.purchases, Records:$scope.records, Items: $scope.items};

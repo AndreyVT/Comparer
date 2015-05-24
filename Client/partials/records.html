@@ -32,7 +32,7 @@ Purchase ID: {{purchase.id}}
                 </td>
             </tr>
 
-            <tr>
+           <!-- <tr>
                 <td></td>
                 <td>
                     <button class="btn btn-default" ng-click="addRecord(purchase.id)" class="btn-sm btn-default">
@@ -40,23 +40,46 @@ Purchase ID: {{purchase.id}}
                     </button>
                 </td>
                 <td></td>
+            </tr>-->
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table-bordered striped">
+            <tr>
+                <th>#</th>
+                <th>ItemId</th>
+                <th>Record</th>
+                <th>Цена</th>
+                <th>Операции</th>
+            </tr>
+            <tr ng-repeat = "record in RecordsList">
+                <td>{{$index + 1}}</td>
+                <td>{{record.ItemId}}</td>
+                <td><cmpr-item itemm="record"></cmpr-item></td>
+                <td>{{record.price}}</td>
+                <td>
+                    <!--<a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a>-->
+                    <a href="" ng-click="deleteRecord($index)"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
             </tr>
         </table>
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div ng-repeat = "record in RecordsList">
-            <div class="row pull-left">
-                <div class="col-md-1">{{record.id}}</div>
-                <div class="col-md-1">{{record.ItemId}}</div>
-                <div class="col-md-7"><cmpr-item itemm="record"></cmpr-item></div>
-                <div class="col-md-2">{{record.price}}</div>
-                <div class="col-md-1"><a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a></div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="panel panel-default">-->
+    <!--<div class="panel-body">-->
+        <!--<div ng-repeat = "record in RecordsList">-->
+            <!--<div class="row pull-left">-->
+                <!--<div class="col-md-1">{{record.id}}</div>-->
+                <!--<div class="col-md-1">{{record.ItemId}}</div>-->
+                <!--<div class="col-md-7"><cmpr-item itemm="record"></cmpr-item></div>-->
+                <!--<div class="col-md-2">{{record.price}}</div>-->
+                <!--<div class="col-md-1"><a href="#/editRecord/{{record.id}}"><i class="glyphicon glyphicon-pencil"></i></a></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 

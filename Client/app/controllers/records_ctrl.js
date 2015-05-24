@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function EditRecordCtrl($scope, $location, $routeParams)    {
+mainModule.controller('EditRecordCtrl', function($scope, $location, $routeParams)    {
     $scope.record =  $scope.records.GetRecord({id : $routeParams.recordId});
 
     $scope.save = function(){
@@ -16,12 +16,18 @@ function EditRecordCtrl($scope, $location, $routeParams)    {
 
         $location.path("/records/" + $scope.record.PurchaseId);
     }
-};
+});
 
-function RecordsCtrl($scope, $routeParams, $filter, $location)    {
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+mainModule.controller('RecordsCtrl',
+function ($scope, $routeParams, $filter, $location)    {
+
     var purchaseId = $routeParams.purchaseId;
     $scope.purchase = $scope.purchases.GetPurchase({id: purchaseId});
     $scope.RecordsList = $scope.records.ListRecords({id : purchaseId});
+    console.log('== Получен список записей:', $scope.RecordsList);
 
     $scope.fullItemsList = {};
     $scope.itemsList = {};
@@ -84,9 +90,18 @@ function RecordsCtrl($scope, $routeParams, $filter, $location)    {
     $scope.isAddItem = function(){
         return  ($scope.itemName.length > AllowedItemNameLength & $scope.itemsList.length === 0);
     };
-};
 
-function NewRecordCtrl($scope, $location)    {//$location,
+    $scope.deleteRecord = function(index){
+        console.log('== Delete purchase record:', $scope.RecordsList[index]);
+        $scope.records.DeleteRecord({id: $scope.RecordsList[index].id});
+        $scope.RecordsList.splice(index, 1);
+    };
+});
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+mainModule.controller('NewRecordCtrl',
+function ($scope, $location)    {//$location,
 
     $scope.record = {};
 
@@ -105,4 +120,4 @@ function NewRecordCtrl($scope, $location)    {//$location,
             //$location.path("/records/" + $scope.record.PurchaseId);
         });
     }
-};
+});

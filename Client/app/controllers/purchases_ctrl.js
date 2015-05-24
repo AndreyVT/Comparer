@@ -23,7 +23,8 @@ function ($scope) {
     //$scope.records = $scope.records.GetRecords(1);
 });
 
-function newPurchaseCtrl($scope, $location){
+mainModule.controller('newPurchaseCtrl',
+    function ($scope, $location){
     $scope.selectedShop = {};
 
     $scope.listShops = $scope.shops.ListShops();
@@ -41,9 +42,9 @@ function newPurchaseCtrl($scope, $location){
             $location.path("/purchases");
         });
     }
-};
+});
 
-function editPurchaseCtrl($scope, $location, $routeParams){
+mainModule.controller('editPurchaseCtrl' , function ($scope, $location, $routeParams){
     $scope.selectedShop = {};
 
     $scope.listShops = $scope.shops.ListShops();
@@ -56,4 +57,4 @@ function editPurchaseCtrl($scope, $location, $routeParams){
             $location.path("/purchases");
         }); //, purchasesAdded
     }
-};
+});

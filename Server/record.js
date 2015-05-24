@@ -26,9 +26,12 @@ var record = function() {
                 });
                 response.end(JSON.stringify(result));
             })*/
+        /*"SELECT t.*, i.* FROM cmpr_record t, cmpr_items i where t.PurchaseId = " + req.params.PurchaseId +
+         " and t.ItemId = i.id "*/
 
-        Model.seq.query("SELECT t.*, i.* FROM cmpr_record t, cmpr_items i where t.PurchaseId = " + req.params.PurchaseId +
-                " and t.ItemId = i.id ").success(function(myTableRows) {
+        Model.seq.query('SELECT t.id, t.price, i.id as ItemId, i.name, i.UserId FROM cmpr_record t, cmpr_items i ' +
+                'where t.PurchaseId = ' + req.params.PurchaseId +
+                ' and t.ItemId = i.id').success(function(myTableRows) {
             response.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
             response.end(JSON.stringify(myTableRows));
         })
@@ -71,11 +74,29 @@ var record = function() {
         });
     };
 
+    var remove = function(req, req, next){
+        var tmpRecord = req.req.params;
+        console.log('========= delete record', tmpRecord)
+        Model.Record.find({where : {id: tmpRecord.id}}).on('success', function(record) {
+            record.destroy().success(function(u) {
+                if (u && u.deletedAt) {
+                    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+                    res.end(JSON.stringify(u));
+                    res.send();
+                }
+            })
+        })
+
+
+    };
+
+
     return {
         get : get,
         getById : getById,
         createRecord : createRecord,
-        update : update
+        update : update,
+        delete: remove
     }
 };
 module.exports = new record();

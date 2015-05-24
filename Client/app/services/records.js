@@ -5,7 +5,7 @@
  * Time: 15:36
  * To change this template use File | Settings | File Templates.
  */
-function RecordService($resource, url) { //http://localhost:7777/api/v1/items/1
+function RecordService($resource, url, $http) { //http://localhost:7777/api/v1/items/1
     //var url = 'http://localhost:7777/api/v1';
     var severalRecordsPath = '/records/:id:cmd';
     var oneRecordPath = '/record/:id:cmd';
@@ -16,7 +16,7 @@ function RecordService($resource, url) { //http://localhost:7777/api/v1/items/1
             GetRecord: { url: url + oneRecordPath, method: "GET", params: { id: 0 } }, // id - покупки
             CreateRecord: { url: url + oneRecordPath,  method: "POST", params: {PurchaseId: 0} },
             UpdateRecord: { url: url + oneRecordPath, method: "PUT", params: {} },
-            DeleteRecord: { url: url + oneRecordPath, method: "DELETE", params: { id: 0 } }
+            DeleteRecord: { url: url + oneRecordPath, method: "DELETE", params: {} }
         });
 
     //Usage:
@@ -38,5 +38,19 @@ function RecordService($resource, url) { //http://localhost:7777/api/v1/items/1
      //RESET with cmd
      //it calls -> api/1/todo/reset
      src.ResetTodos();*/
+
+  /*  src.DeleteRecord2 =  function(params){
+        console.log('=== HTTP:', $http);
+        return $http.delete(url + '/record/', params).
+            success(function(data, status, headers, config) {
+                console.log('---- success', data);
+                console.log('---- success', status);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('---- error', data);
+                console.log('---- error', status);
+            });
+    }*/
+
     return src;
 }
